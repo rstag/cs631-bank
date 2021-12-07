@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  showEmpfunctions: boolean=false;
 
   constructor(private http: HttpClient) { }
 
@@ -168,6 +169,7 @@ export class AppComponent {
     this.http.post<any>('http://localhost:3000/employee/findemployee', { E_id: this.E_id }).subscribe(data => {
       console.log(data.result.Branch_id)
       localStorage.setItem('Branch_id', data.result.Branch_id)
+      this.showEmpfunctions=true
     })
   }
 }

@@ -1,14 +1,14 @@
-<mat-tab-group>
-  <mat-tab label="Customer">
+<mat-tab-group >
+  <mat-tab label="Customer" style="background-color: rgb(120, 126, 126);">
     
     <mat-card>
       <mat-label label-for="E_id">Enter Employee id</mat-label>
       <input matInput [(ngModel)]="E_id" id="E_id" />
       <button (click)="check_id()">Submit</button>
     </mat-card>
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
+    <mat-accordion *ngIf="showEmpfunctions">
+      <mat-expansion-panel hideToggle >
+        <mat-expansion-panel-header style="    height: 40px;">
           <mat-panel-title> Add new Customer </mat-panel-title>
           <mat-panel-description>
             Add the following data:
@@ -62,7 +62,7 @@
         </p>
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header style="    height: 40px;">
           <mat-panel-title> Modify the Customer data </mat-panel-title>
           <mat-panel-description>
             Add the following data:
@@ -79,7 +79,7 @@
         </p>
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header style="    height: 40px;">
           <mat-panel-title> Remove the Customer from bank </mat-panel-title>
           <mat-panel-description>
             Add the following data:
