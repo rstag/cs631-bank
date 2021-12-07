@@ -1,1 +1,147 @@
-CS631 DBMS
+<mat-tab-group>
+  <mat-tab label="Customer">
+    
+    <mat-card>
+      <mat-label label-for="E_id">Enter Employee id</mat-label>
+      <input matInput [(ngModel)]="E_id" id="E_id" />
+      <button (click)="check_id()">Submit</button>
+    </mat-card>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Add new Customer </mat-panel-title>
+          <mat-panel-description>
+            Add the following data:
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-label label-for="cust_name">Enter Customer Name</mat-label>
+          <input matInput [(ngModel)]="cust_name" id="cust_name" />
+        </p>
+        <p>
+          <mat-label label-for="cust_ssn">Enter Customer SSN</mat-label>
+          <input matInput [(ngModel)]="cust_ssn" id="cust_ssn" />
+        </p>
+
+        <p>
+          <mat-label label-for="cust_street">Street name</mat-label>
+          <input matInput [(ngModel)]="cust_street" id="cust_street" />
+        </p>
+        <p>
+          <mat-label label-for="cust_apt">Apartment number</mat-label>
+          <input matInput [(ngModel)]="cust_apt" id="cust_apt" />
+        </p>
+        <p>
+          <mat-label label-for="cust_city">City</mat-label>
+          <input matInput [(ngModel)]="cust_city" id="cust_city" />
+        </p>
+        <p>
+          <mat-label label-for="cust_state">State</mat-label>
+          <input matInput [(ngModel)]="cust_state" id="cust_state" />
+        </p>
+        <p>
+          <mat-label label-for="cust_zip">Zip</mat-label>
+          <input matInput [(ngModel)]="cust_zip" id="cust_zip" />
+        </p>
+        <p>
+          <mat-label label-for="acc_type">Account Type </mat-label>
+          <input matInput [(ngModel)]="acc_type" id="acc_type" />
+        </p>
+        <p>
+          <mat-label label-for="Trans_amount">
+            Deposit amount to open Account
+          </mat-label>
+
+          <input matInput [(ngModel)]="Trans_amount" id="Trans_amount" />
+        </p>
+
+        <p>
+          <!-- <mat-label label-for="Cust_id">Enter Customer id</mat-label>
+          <input matInput [(ngModel)]="Cust_id" id="Cust_id" /> -->
+          <button (click)="addCustomer()">Submit</button>
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Modify the Customer data </mat-panel-title>
+          <mat-panel-description>
+            Add the following data:
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-label label-for="mod_Cust_id">Enter Customer id</mat-label>
+          <input matInput [(ngModel)]="mod_Cust_id" id="mod_Cust_id" />
+        </p>
+        <p>
+          <mat-label label-for="mod_Cust_ssn">Enter Customer SSN</mat-label>
+          <input matInput [(ngModel)]="mod_Cust_ssn" id="mod_Cust_ssn" />
+          <button (click)="modifyCustomer()">Submit</button>
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Remove the Customer from bank </mat-panel-title>
+          <mat-panel-description>
+            Add the following data:
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-label label-for="del_Cust_id">Enter Customer id</mat-label>
+          <input matInput [(ngModel)]="del_Cust_id" id="del_Cust_id" />
+        </p>
+        <p>
+          <mat-label label-for="del_Branch_id">Enter Branch id</mat-label>
+          <input matInput [(ngModel)]="del_Branch_id" id="del_Branch_id" />
+          <button (click)="deleteCustomer()">Submit</button>
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+  <mat-tab label="Passbook">
+    
+    <mat-card>Print Passbook</mat-card>
+    <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Enter the Customer id then press submit </mat-panel-title>
+        <mat-panel-description>
+          Add the following data:
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        <mat-label label-for="trans_Cust_id">Enter Customer id</mat-label>
+        <input matInput [(ngModel)]="trans_Cust_id" id="trans_Cust_id" />
+      </p>
+      <p>
+        <button (click)="printPassbook()">Submit</button>
+      </p>
+        <table border="1">
+          <tr>
+            <th>Date</th>
+            <th>Transaction Code</th>
+            <th>Transaction Name</th>
+            <th>Debits</th>
+            <th>Credits</th>
+            <th>Balance</th>
+          </tr>
+          <tr *ngFor="let p of cust_passbook; index as i; first as isFirst">
+            <td>{{p.Trans_date}}</td> 
+            <td>{{p.Trans_code}} </td>
+            <td>{{p.Trans_type}} </td>
+            <td><span *ngIf="p.Trans_type!='Deposit'">{{p.Trans_amount}}</span></td> 
+            <td><span *ngIf="p.Trans_type=='Deposit'">{{p.Trans_amount}}</span></td>
+            <!-- <td>{{cust_cur_balance}}</td>  -->
+            <td>{{p.bal}}</td> 
+          </tr>
+        </table>
+      
+      
+      
+    </mat-expansion-panel>
+  </mat-accordion>
+  </mat-tab>
+  <!-- <mat-tab label="Transaction">
+    Transaction
+    <mat-card>Simple card</mat-card>
+  </mat-tab> -->
+</mat-tab-group>
