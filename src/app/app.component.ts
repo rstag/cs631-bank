@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showEmpfunctions: boolean=false;
+  showEmpfunctions: boolean = false;
+  loading = false
 
   constructor(private http: HttpClient) { }
 
@@ -50,7 +51,7 @@ export class AppComponent {
   // Account
   Acc_no: any = ''
   Acc_last_access = ''
-  acc_balance = ''
+  acc_balance: any = ''
   acc_type = ''
   Acc_Cust_id = ''
   Acc_sav_interest = '4'
@@ -139,7 +140,7 @@ export class AppComponent {
     this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
       console.log(data)
       this.cust_cur_balance = data.result.acc_balance
-      this.cust_cur_balance=0
+      this.cust_cur_balance = 0
       // this.cust_passbook[0].bal = this.cust_cur_balance
       for (let i = 0; i < this.cust_passbook.length; i++) {
         if (this.cust_passbook[i].Trans_type == 'Deposit')
@@ -149,10 +150,12 @@ export class AppComponent {
         this.cust_cur_balance = this.cust_passbook[i].bal
       }
       console.log(this.cust_passbook)
+      this.loading = false
     })
   }
 
   printPassbook() {
+    this.loading = true
     this.http.post<any>('http://localhost:3000/acc_transaction/findacc_transaction_for_cust', {
       Trans_Cust_id: this.trans_Cust_id
     }).subscribe(data => {
@@ -165,11 +168,120 @@ export class AppComponent {
     })
   }
 
+  // make Deposit
+  dep_acc_no: any = ''
+  dep_amount = ''
+  dep_Trans_payment_mode = 'cash'
+  dep_Trans_cheque_acc: any = ''
+  dep_cust_id:any=''
+  dep_Trans_cheque_cust:any=''
+
+  makeDeposit() {
+    this.Trans_id = this.getRandomInt()
+    this.Trans_Cust_id = this.dep_cust_id
+    this.Trans_Acc_no = this.dep_acc_no
+    this.Trans_code = (this.dep_Trans_payment_mode == 'cash')?'DP01':'DP02'
+    this.Trans_date = '12/08/2021'
+    this.Trans_hour = '12:34 PM'
+    this.Trans_payment_mode = this.dep_Trans_payment_mode
+    this.Trans_amount = this.dep_amount
+    this.Trans_type = 'Deposit'
+    this.http.post<any>('http://localhost:3000/acc_transaction/newacc_transaction', {
+      Trans_id: this.Trans_id, Trans_date: this.Trans_date, Trans_hour: this.Trans_hour, Trans_amount: this.Trans_amount, Trans_payment_mode: this.Trans_payment_mode, Trans_type: this.Trans_type, Trans_Cust_id: this.Trans_Cust_id, Trans_Acc_no: this.Trans_Acc_no, Trans_code: this.Trans_code
+    }).subscribe(data => {
+      console.log(data)
+      // this.updateAccount()
+      this.Acc_no = this.Trans_Acc_no
+      // this.Acc_last_access = '12/07/2021'
+      this.acc_balance = ''
+      this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
+        console.log(data)
+        this.cust_cur_balance = data.result.acc_balance
+        this.Acc_last_access = '12/08/2021'
+        this.acc_balance = parseInt(this.cust_cur_balance) + parseInt(this.Trans_amount) * (this.Trans_type == "Deposit" ? 1 : -1)
+        this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
+          console.log(data)
+          if(this.dep_Trans_payment_mode != 'cash'){
+          // Checque withdrawal
+            this.Trans_id = this.getRandomInt()
+            this.Trans_Cust_id = this.dep_Trans_cheque_cust
+            this.Trans_Acc_no = this.dep_Trans_cheque_acc
+            this.Trans_code = 'WD03'
+            this.Trans_date = '12/08/2021'
+            this.Trans_hour = '12:36 PM'
+            this.Trans_payment_mode = this.dep_Trans_payment_mode
+            this.Trans_amount = this.dep_amount
+            this.Trans_type = 'Withdrawal'
+            this.http.post<any>('http://localhost:3000/acc_transaction/newacc_transaction', {
+              Trans_id: this.Trans_id, Trans_date: this.Trans_date, Trans_hour: this.Trans_hour, Trans_amount: this.Trans_amount, Trans_payment_mode: this.Trans_payment_mode, Trans_type: this.Trans_type, Trans_Cust_id: this.Trans_Cust_id, Trans_Acc_no: this.Trans_Acc_no, Trans_code: this.Trans_code
+            }).subscribe(data => {
+              console.log(data)
+              // this.updateAccount()
+              this.Acc_no = this.Trans_Acc_no
+              // this.Acc_last_access = '12/07/2021'
+              this.acc_balance = ''
+              this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
+                console.log(data)
+                this.cust_cur_balance = data.result.acc_balance
+                this.Acc_last_access = '12/08/2021'
+                this.acc_balance = parseInt(this.cust_cur_balance) + parseInt(this.Trans_amount) * (this.Trans_type == "Deposit" ? 1 : -1)
+                this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
+                  console.log(data)
+                })
+              })
+            })
+          }
+        
+          
+        })
+      })
+    })
+
+  }
+
+
+  //withdrawal
+  wt_acc_no: any = ''
+  wt_amount: any = ''
+  wt_Trans_payment_mode = 'cash'
+  wt_cust_id: any = ''
+
+  makeWithdrawl() {
+    this.Trans_id = this.getRandomInt()
+    this.Trans_Cust_id = this.wt_cust_id
+    this.Trans_Acc_no = this.wt_acc_no
+    this.Trans_code = 'WD01'
+    this.Trans_date = '12/08/2021'
+    this.Trans_hour = '12:33 PM'
+    this.Trans_payment_mode = this.wt_Trans_payment_mode
+    this.Trans_amount = this.wt_amount
+    this.Trans_type = 'Withdrawal'
+    this.http.post<any>('http://localhost:3000/acc_transaction/newacc_transaction', {
+      Trans_id: this.Trans_id, Trans_date: this.Trans_date, Trans_hour: this.Trans_hour, Trans_amount: this.Trans_amount, Trans_payment_mode: this.Trans_payment_mode, Trans_type: this.Trans_type, Trans_Cust_id: this.Trans_Cust_id, Trans_Acc_no: this.Trans_Acc_no, Trans_code: this.Trans_code
+    }).subscribe(data => {
+      console.log(data)
+      // this.updateAccount()
+      this.Acc_no = this.Trans_Acc_no
+      // this.Acc_last_access = '12/07/2021'
+      this.acc_balance = ''
+      this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
+        console.log(data)
+        this.cust_cur_balance = data.result.acc_balance
+        this.Acc_last_access = '12/08/2021'
+        this.acc_balance = parseInt(this.cust_cur_balance) + parseInt(this.Trans_amount) * (this.Trans_type == "Deposit" ? 1 : -1)
+        this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
+          console.log(data)
+        })
+      })
+    })
+
+  }
+
   check_id() {
     this.http.post<any>('http://localhost:3000/employee/findemployee', { E_id: this.E_id }).subscribe(data => {
       console.log(data.result.Branch_id)
       localStorage.setItem('Branch_id', data.result.Branch_id)
-      this.showEmpfunctions=true
+      this.showEmpfunctions = true
     })
   }
 }

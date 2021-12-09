@@ -1,59 +1,93 @@
-<mat-tab-group >
-  <mat-tab label="Customer" style="background-color: rgb(120, 126, 126);">
-    
+<mat-tab-group>
+  <mat-tab label="Customer" style="background: gray">
+    <mat-card>Enter Employee id then press submit</mat-card>
     <mat-card>
-      <mat-label label-for="E_id">Enter Employee id</mat-label>
+      <mat-label label-for="E_id">Enter Employee id </mat-label>
       <input matInput [(ngModel)]="E_id" id="E_id" />
-      <button (click)="check_id()">Submit</button>
+      <p>
+        <button (click)="check_id()">Submit</button>
+      </p>
     </mat-card>
     <mat-accordion *ngIf="showEmpfunctions">
-      <mat-expansion-panel hideToggle >
-        <mat-expansion-panel-header style="    height: 40px;">
+      <mat-expansion-panel hideToggle style="background: antiquewhite">
+        <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> Add new Customer </mat-panel-title>
           <mat-panel-description>
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>
-          <mat-label label-for="cust_name">Enter Customer Name</mat-label>
-          <input matInput [(ngModel)]="cust_name" id="cust_name" />
-        </p>
-        <p>
-          <mat-label label-for="cust_ssn">Enter Customer SSN</mat-label>
-          <input matInput [(ngModel)]="cust_ssn" id="cust_ssn" />
-        </p>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="cust_name">Enter Customer Name</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="cust_name" id="cust_name" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="cust_ssn">Enter Customer SSN</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="cust_ssn" id="cust_ssn" />
+          </td>
+        </tr>
 
-        <p>
-          <mat-label label-for="cust_street">Street name</mat-label>
-          <input matInput [(ngModel)]="cust_street" id="cust_street" />
-        </p>
-        <p>
-          <mat-label label-for="cust_apt">Apartment number</mat-label>
-          <input matInput [(ngModel)]="cust_apt" id="cust_apt" />
-        </p>
-        <p>
-          <mat-label label-for="cust_city">City</mat-label>
-          <input matInput [(ngModel)]="cust_city" id="cust_city" />
-        </p>
-        <p>
-          <mat-label label-for="cust_state">State</mat-label>
-          <input matInput [(ngModel)]="cust_state" id="cust_state" />
-        </p>
-        <p>
-          <mat-label label-for="cust_zip">Zip</mat-label>
-          <input matInput [(ngModel)]="cust_zip" id="cust_zip" />
-        </p>
-        <p>
-          <mat-label label-for="acc_type">Account Type </mat-label>
-          <input matInput [(ngModel)]="acc_type" id="acc_type" />
-        </p>
-        <p>
-          <mat-label label-for="Trans_amount">
-            Deposit amount to open Account
-          </mat-label>
-
-          <input matInput [(ngModel)]="Trans_amount" id="Trans_amount" />
-        </p>
+        <tr style="height: 30px">
+          <td><mat-label label-for="cust_street">Street name</mat-label></td>
+          <td>
+            <input matInput [(ngModel)]="cust_street" id="cust_street" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td><mat-label label-for="cust_apt">Apartment number</mat-label></td>
+          <td>
+            <input matInput [(ngModel)]="cust_apt" id="cust_apt" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td><mat-label label-for="cust_city">City</mat-label></td>
+          <td>
+            <input matInput [(ngModel)]="cust_city" id="cust_city" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td><mat-label label-for="cust_state">State</mat-label></td>
+          <td>
+            <input matInput [(ngModel)]="cust_state" id="cust_state" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td><mat-label label-for="cust_zip">Zip</mat-label></td>
+          <td>
+            <input matInput [(ngModel)]="cust_zip" id="cust_zip" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td><mat-label label-for="acc_type">Account Type </mat-label></td>
+          <td>
+            <select
+              [(ngModel)]="acc_type"
+              id="acc_type"
+            >
+              <option value="Savings">Savings</option>
+              <option value="Checking">Checking</option>
+              <option value="Money Market">Money Market</option>
+              <option value="Loan">Loan</option>
+            </select>
+            <!-- <input matInput [(ngModel)]="acc_type" id="acc_type" /> -->
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="Trans_amount"
+              >Deposit amount to open Account
+            </mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="Trans_amount" id="Trans_amount" />
+          </td>
+        </tr>
 
         <p>
           <!-- <mat-label label-for="Cust_id">Enter Customer id</mat-label>
@@ -61,62 +95,81 @@
           <button (click)="addCustomer()">Submit</button>
         </p>
       </mat-expansion-panel>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header style="    height: 40px;">
+      <mat-expansion-panel hideToggle style="background: lavender">
+        <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> Modify the Customer data </mat-panel-title>
           <mat-panel-description>
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="mod_Cust_id">Enter Customer id</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="mod_Cust_id" id="mod_Cust_id" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="mod_Cust_ssn">Enter Customer SSN</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="mod_Cust_ssn" id="mod_Cust_ssn" />
+          </td>
+        </tr>
         <p>
-          <mat-label label-for="mod_Cust_id">Enter Customer id</mat-label>
-          <input matInput [(ngModel)]="mod_Cust_id" id="mod_Cust_id" />
-        </p>
-        <p>
-          <mat-label label-for="mod_Cust_ssn">Enter Customer SSN</mat-label>
-          <input matInput [(ngModel)]="mod_Cust_ssn" id="mod_Cust_ssn" />
           <button (click)="modifyCustomer()">Submit</button>
         </p>
       </mat-expansion-panel>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header style="    height: 40px;">
+      <mat-expansion-panel hideToggle style="background: lightyellow">
+        <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> Remove the Customer from bank </mat-panel-title>
           <mat-panel-description>
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>
-          <mat-label label-for="del_Cust_id">Enter Customer id</mat-label>
-          <input matInput [(ngModel)]="del_Cust_id" id="del_Cust_id" />
-        </p>
-        <p>
-          <mat-label label-for="del_Branch_id">Enter Branch id</mat-label>
-          <input matInput [(ngModel)]="del_Branch_id" id="del_Branch_id" />
-          <button (click)="deleteCustomer()">Submit</button>
-        </p>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="del_Cust_id">Enter Customer id</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="del_Cust_id" id="del_Cust_id" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="del_Branch_id">Enter Branch id</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="del_Branch_id" id="del_Branch_id" />
+          </td>
+        </tr>
+        <p><button (click)="deleteCustomer()">Submit</button></p>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-tab>
   <mat-tab label="Passbook">
-    
     <mat-card>Print Passbook</mat-card>
     <mat-accordion>
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Enter the Customer id then press submit </mat-panel-title>
-        <mat-panel-description>
-          Add the following data:
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>
-        <mat-label label-for="trans_Cust_id">Enter Customer id</mat-label>
-        <input matInput [(ngModel)]="trans_Cust_id" id="trans_Cust_id" />
-      </p>
-      <p>
-        <button (click)="printPassbook()">Submit</button>
-      </p>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Enter the Customer id then press submit
+          </mat-panel-title>
+          <mat-panel-description>
+            Add the following data:
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-label label-for="trans_Cust_id">Enter Customer id</mat-label>
+          <input matInput [(ngModel)]="trans_Cust_id" id="trans_Cust_id" />
+        </p>
+        <p>
+          <button (click)="printPassbook()">Submit</button>
+        </p>
         <table border="1">
-          <tr>
+          <tr *ngIf="cust_passbook.length > 0">
             <th>Date</th>
             <th>Transaction Code</th>
             <th>Transaction Name</th>
@@ -125,23 +178,167 @@
             <th>Balance</th>
           </tr>
           <tr *ngFor="let p of cust_passbook; index as i; first as isFirst">
-            <td>{{p.Trans_date}}</td> 
-            <td>{{p.Trans_code}} </td>
-            <td>{{p.Trans_type}} </td>
-            <td><span *ngIf="p.Trans_type!='Deposit'">{{p.Trans_amount}}</span></td> 
-            <td><span *ngIf="p.Trans_type=='Deposit'">{{p.Trans_amount}}</span></td>
+            <td>{{ p.Trans_date }}</td>
+            <td>{{ p.Trans_code }}</td>
+            <td>{{ p.Trans_type }}</td>
+            <td>
+              <span *ngIf="p.Trans_type != 'Deposit'">{{
+                p.Trans_amount
+              }}</span>
+            </td>
+            <td>
+              <span *ngIf="p.Trans_type == 'Deposit'">{{
+                p.Trans_amount
+              }}</span>
+            </td>
             <!-- <td>{{cust_cur_balance}}</td>  -->
-            <td>{{p.bal}}</td> 
+            <td>{{ p.bal }}</td>
           </tr>
         </table>
-      
-      
-      
-    </mat-expansion-panel>
-  </mat-accordion>
+      </mat-expansion-panel>
+    </mat-accordion>
   </mat-tab>
-  <!-- <mat-tab label="Transaction">
-    Transaction
-    <mat-card>Simple card</mat-card>
-  </mat-tab> -->
+  <mat-tab label="Transaction">
+    <mat-card>Make a Deposit/ Withdraw </mat-card>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header style="height: 40px">
+          <mat-panel-title> To Deposit </mat-panel-title>
+          <mat-panel-description>
+            Add the following data:
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="dep_acc_no">Enter Account number</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="dep_acc_no" id="dep_acc_no" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="dep_cust_id">Enter Customer id</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="dep_cust_id" id="dep_cust_id" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="dep_amount">Enter Deposit amount</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="dep_amount" id="dep_amount" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="dep_Trans_payment_mode"
+              >Payment mode</mat-label
+            >
+          </td>
+          <td>
+            <select
+              [(ngModel)]="dep_Trans_payment_mode"
+              id="dep_Trans_payment_mode"
+            >
+              <option value="cash">Cash</option>
+              <option value="cheque">Cheque</option>
+            </select>
+            <!-- <input matInput [(ngModel)]="dep_Trans_payment_mode" id="dep_Trans_payment_mode" /> -->
+          </td>
+        </tr>
+        <tr style="height: 30px" *ngIf="dep_Trans_payment_mode != 'cash'">
+          <td>
+            <mat-label label-for="dep_Trans_cheque_acc">Check number</mat-label>
+          </td>
+          <td>
+            <input
+              matInput
+              [(ngModel)]="dep_Trans_cheque_acc"
+              id="dep_Trans_cheque_acc"
+            />
+          </td>
+        </tr>
+        <tr style="height: 30px" *ngIf="dep_Trans_payment_mode != 'cash'">
+          <td>
+            <mat-label label-for="dep_Trans_cheque_cust"
+              >Check number</mat-label
+            >
+          </td>
+          <td>
+            <input
+              matInput
+              [(ngModel)]="dep_Trans_cheque_cust"
+              id="dep_Trans_cheque_cust"
+            />
+          </td>
+        </tr>
+        <!-- <p *ngIf="dep_Trans_payment_mode == 'cash'"> -->
+        <p>
+          <button (click)="makeDeposit()">Submit</button>
+        </p>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header style="height: 40px">
+          <mat-panel-title> To Withdraw </mat-panel-title>
+          <mat-panel-description>
+            Add the following data:
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="wt_acc_no">Enter Account number</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="wt_acc_no" id="wt_acc_no" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="wt_cust_id">Enter Customer id</mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="wt_cust_id" id="wt_cust_id" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="wt_amount">
+              Enter Withdrawal amount
+            </mat-label>
+          </td>
+          <td>
+            <input matInput [(ngModel)]="wt_amount" id="wt_amount" />
+          </td>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <mat-label label-for="wt_Trans_payment_mode">
+              Payment mode
+            </mat-label>
+          </td>
+          <td>
+            <input
+              matInput
+              [(ngModel)]="wt_Trans_payment_mode"
+              id="wt_Trans_payment_mode"
+              disabled
+            />
+          </td>
+        </tr>
+
+        <p>
+          <button (click)="makeWithdrawl()">Submit</button>
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
 </mat-tab-group>
+<img
+  *ngIf="loading"
+  src="assets/loading.gif"
+  style="display: block; width: 40px; margin-left: auto; margin-right: auto"
+/>
