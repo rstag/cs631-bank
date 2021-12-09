@@ -16,6 +16,14 @@
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <tr *ngIf="userCreated" style="height: 30px">
+          <td>Your Account number:</td>
+          <td>{{ Acc_no }}</td>
+        </tr>
+        <tr *ngIf="userCreated" style="height: 30px">
+          <td>Your Customer Id:</td>
+          <td>{{ Cust_id }}</td>
+        </tr>
         <tr style="height: 30px">
           <td>
             <mat-label label-for="cust_name">Enter Customer Name</mat-label>
@@ -66,10 +74,7 @@
         <tr style="height: 30px">
           <td><mat-label label-for="acc_type">Account Type </mat-label></td>
           <td>
-            <select
-              [(ngModel)]="acc_type"
-              id="acc_type"
-            >
+            <select [(ngModel)]="acc_type" id="acc_type">
               <option value="Savings">Savings</option>
               <option value="Checking">Checking</option>
               <option value="Money Market">Money Market</option>
@@ -81,7 +86,7 @@
         <tr style="height: 30px">
           <td>
             <mat-label label-for="Trans_amount"
-              >Deposit amount to open Account
+              >Deposit amount to open Account &nbsp;
             </mat-label>
           </td>
           <td>
@@ -112,7 +117,9 @@
         </tr>
         <tr style="height: 30px">
           <td>
-            <mat-label label-for="mod_Cust_ssn">Enter Customer SSN</mat-label>
+            <mat-label label-for="mod_Cust_ssn"
+              >Enter Customer SSN &nbsp;</mat-label
+            >
           </td>
           <td>
             <input matInput [(ngModel)]="mod_Cust_ssn" id="mod_Cust_ssn" />
@@ -131,7 +138,9 @@
         </mat-expansion-panel-header>
         <tr style="height: 30px">
           <td>
-            <mat-label label-for="del_Cust_id">Enter Customer id</mat-label>
+            <mat-label label-for="del_Cust_id"
+              >Enter Customer id &nbsp;</mat-label
+            >
           </td>
           <td>
             <input matInput [(ngModel)]="del_Cust_id" id="del_Cust_id" />
@@ -162,7 +171,9 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <p>
-          <mat-label label-for="trans_Cust_id">Enter Customer id</mat-label>
+          <mat-label label-for="trans_Cust_id"
+            >Enter Customer id &nbsp;</mat-label
+          >
           <input matInput [(ngModel)]="trans_Cust_id" id="trans_Cust_id" />
         </p>
         <p>
@@ -210,7 +221,9 @@
         </mat-expansion-panel-header>
         <tr style="height: 30px">
           <td>
-            <mat-label label-for="dep_acc_no">Enter Account number</mat-label>
+            <mat-label label-for="dep_acc_no"
+              >Enter Account number &nbsp;</mat-label
+            >
           </td>
           <td>
             <input matInput [(ngModel)]="dep_acc_no" id="dep_acc_no" />
@@ -251,7 +264,9 @@
         </tr>
         <tr style="height: 30px" *ngIf="dep_Trans_payment_mode != 'cash'">
           <td>
-            <mat-label label-for="dep_Trans_cheque_acc">Check number</mat-label>
+            <mat-label label-for="dep_Trans_cheque_acc"
+              >Account number on Cheque &nbsp;</mat-label
+            >
           </td>
           <td>
             <input
@@ -264,8 +279,8 @@
         <tr style="height: 30px" *ngIf="dep_Trans_payment_mode != 'cash'">
           <td>
             <mat-label label-for="dep_Trans_cheque_cust"
-              >Check number</mat-label
-            >
+              >Customer id on Cheque
+            </mat-label>
           </td>
           <td>
             <input
@@ -307,7 +322,7 @@
         <tr style="height: 30px">
           <td>
             <mat-label label-for="wt_amount">
-              Enter Withdrawal amount
+              Enter Withdrawal amount &nbsp;
             </mat-label>
           </td>
           <td>
