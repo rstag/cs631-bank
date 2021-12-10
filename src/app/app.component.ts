@@ -139,9 +139,10 @@ export class AppComponent {
 
   deleteCustomer() {
     this.loading = true
-    this.http.post<any>('http://localhost:3000/customer/delcustomer', { Cust_id: this.mod_Cust_id }).subscribe(data => {
+    this.http.post<any>('http://localhost:3000/customer/delcustomer', { Cust_id: this.del_Cust_id }).subscribe(data => {
       console.log(data)
       this.loading = false
+      this.userRemoved=true
     })
   }
 
@@ -154,6 +155,7 @@ export class AppComponent {
     this.http.post<any>('http://localhost:3000/customer/updatecustomer', { Cust_id: this.mod_Cust_id, cust_ssn: this.mod_Cust_ssn }).subscribe(data => {
       console.log(data)
       this.loading = false
+      this.userModified=true
     })
   }
 
@@ -239,6 +241,7 @@ export class AppComponent {
         this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
           console.log(data)
           this.loading = false
+          this.userDeposited=true
           if (this.dep_Trans_payment_mode != 'cash') {
             // Checque withdrawal
             this.Trans_id = this.getRandomInt()
@@ -321,6 +324,7 @@ export class AppComponent {
         this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
           console.log(data)
           this.loading = false
+          this.userWithdraw=true
         })
       })
     })
