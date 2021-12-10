@@ -47,6 +47,10 @@ export class AppComponent {
   cust_Branch_id: any = ''
   Cust_E_id = ''
   userCreated = false
+  userModified = false
+  userRemoved=false
+  userDeposited=false
+  userWithdraw=false
 
   addCustomer() {
     this.cust_Branch_id = localStorage.getItem('Branch_id')

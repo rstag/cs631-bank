@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group style="z-index: 0;">
   <mat-tab label="Customer" style="background: gray">
     <mat-card>Enter Employee id then press submit</mat-card>
     <mat-card>
@@ -16,6 +16,10 @@
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <tr *ngIf="userCreated" style="height: 30px">
+          <td>New Customer created</td>
+          <td></td>
+        </tr>
         <tr *ngIf="userCreated" style="height: 30px">
           <td>Your Account number:</td>
           <td>{{ Acc_no }}</td>
@@ -107,6 +111,10 @@
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <tr *ngIf="userModified" style="height: 30px">
+          <td>Customer details updated:</td>
+          <td></td>
+        </tr>
         <tr style="height: 30px">
           <td>
             <mat-label label-for="mod_Cust_id">Enter Customer id</mat-label>
@@ -136,6 +144,10 @@
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <tr *ngIf="userRemoved" style="height: 30px">
+          <td>Customer Removed</td>
+          <td></td>
+        </tr>
         <tr style="height: 30px">
           <td>
             <mat-label label-for="del_Cust_id"
@@ -219,6 +231,10 @@
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <tr *ngIf="userDeposited" style="height: 30px">
+          <td>Amount Deposited successfully.</td>
+          <td></td>
+        </tr>
         <tr style="height: 30px">
           <td>
             <mat-label label-for="dep_acc_no"
@@ -303,6 +319,10 @@
             Add the following data:
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <tr *ngIf="userWithdraw" style="height: 30px">
+          <td>Amount  Withdrawal completed.</td>
+          <td></td>
+        </tr>
         <tr style="height: 30px">
           <td>
             <mat-label label-for="wt_acc_no">Enter Account number</mat-label>
@@ -355,5 +375,5 @@
 <img
   *ngIf="loading"
   src="assets/loading.gif"
-  style="display: block; width: 40px; margin-left: auto; margin-right: auto"
+  style="display: flex;align-items: center;justify-content: center; width: 100px;left: 40%; z-index: 1;position: absolute;top: 50%;"
 />
