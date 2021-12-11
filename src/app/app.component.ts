@@ -57,7 +57,7 @@ export class AppComponent {
     console.log(this.cust_Branch_id)
     this.Cust_id = this.getRandomInt()
     this.loading = true
-    this.http.post<any>('http://localhost:3000/customer/newcustomer', {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/customer/newcustomer', {
       Cust_id: this.Cust_id,
       cust_name: this.cust_name, cust_ssn: this.cust_ssn, cust_state: this.cust_state, cust_city: this.cust_city, cust_zip: this.cust_zip, cust_street: this.cust_street, cust_apt: this.cust_apt, Branch_id: this.cust_Branch_id, Cust_E_id: this.E_id
     }).subscribe(data => {
@@ -85,7 +85,7 @@ export class AppComponent {
     this.Acc_last_access = this.getDate()
     this.acc_balance = '0'
     this.loading = true
-    this.http.post<any>('http://localhost:3000/account/newaccount', { Acc_no: this.Acc_no, Acc_last_access: this.Acc_last_access, acc_balance: this.acc_balance, acc_type: this.acc_type, Acc_Cust_id: this.Cust_id, Acc_sav_interest: this.Acc_sav_interest, Acc_mo_mar_interest: this.Acc_mo_mar_interest, Acc_chk_overdraft: this.Acc_chk_overdraft, Acc_chk_max_amt: this.Acc_chk_max_amt, Acc_chk_min_amt: this.Acc_chk_min_amt, Acc_loan_interest: this.Acc_loan_interest }).subscribe(data => {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/newaccount', { Acc_no: this.Acc_no, Acc_last_access: this.Acc_last_access, acc_balance: this.acc_balance, acc_type: this.acc_type, Acc_Cust_id: this.Cust_id, Acc_sav_interest: this.Acc_sav_interest, Acc_mo_mar_interest: this.Acc_mo_mar_interest, Acc_chk_overdraft: this.Acc_chk_overdraft, Acc_chk_max_amt: this.Acc_chk_max_amt, Acc_chk_min_amt: this.Acc_chk_min_amt, Acc_loan_interest: this.Acc_loan_interest }).subscribe(data => {
       console.log(data)
       this.loading = false
       this.userCreated = true
@@ -114,7 +114,7 @@ export class AppComponent {
     this.Trans_payment_mode = 'cash'
     this.Trans_type = 'Deposit'
     this.loading = true
-    this.http.post<any>('http://localhost:3000/acc_transaction/newacc_transaction', {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/acc_transaction/newacc_transaction', {
       Trans_id: this.Trans_id, Trans_date: this.Trans_date, Trans_hour: this.Trans_hour, Trans_amount: this.Trans_amount, Trans_payment_mode: this.Trans_payment_mode, Trans_type: this.Trans_type, Trans_Cust_id: this.Trans_Cust_id, Trans_Acc_no: this.Trans_Acc_no, Trans_code: this.Trans_code
     }).subscribe(data => {
       console.log(data)
@@ -127,7 +127,7 @@ export class AppComponent {
     this.Acc_last_access = this.getDate()
     this.acc_balance = this.Trans_amount
     this.loading = true
-    this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
       console.log(data)
       this.loading = false
     })
@@ -139,7 +139,7 @@ export class AppComponent {
 
   deleteCustomer() {
     this.loading = true
-    this.http.post<any>('http://localhost:3000/customer/delcustomer', { Cust_id: this.del_Cust_id }).subscribe(data => {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/customer/delcustomer', { Cust_id: this.del_Cust_id }).subscribe(data => {
       console.log(data)
       this.loading = false
       this.userRemoved=true
@@ -152,7 +152,7 @@ export class AppComponent {
 
   modifyCustomer() {
     this.loading = true
-    this.http.post<any>('http://localhost:3000/customer/updatecustomer', { Cust_id: this.mod_Cust_id, cust_ssn: this.mod_Cust_ssn }).subscribe(data => {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/customer/updatecustomer', { Cust_id: this.mod_Cust_id, cust_ssn: this.mod_Cust_ssn }).subscribe(data => {
       console.log(data)
       this.loading = false
       this.userModified=true
@@ -170,7 +170,7 @@ export class AppComponent {
     // this.Acc_last_access = '12/07/2021'
     this.acc_balance = ''
     this.loading = true
-    this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
       console.log(data)
       this.loading = false
       this.cust_cur_balance = data.result.acc_balance
@@ -189,7 +189,7 @@ export class AppComponent {
 
   printPassbook() {
     this.loading = true
-    this.http.post<any>('http://localhost:3000/acc_transaction/findacc_transaction_for_cust', {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/acc_transaction/findacc_transaction_for_cust', {
       Trans_Cust_id: this.trans_Cust_id
     }).subscribe(data => {
       this.loading = false
@@ -221,7 +221,7 @@ export class AppComponent {
     this.Trans_amount = this.dep_amount
     this.Trans_type = 'Deposit'
     this.loading = true
-    this.http.post<any>('http://localhost:3000/acc_transaction/newacc_transaction', {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/acc_transaction/newacc_transaction', {
       Trans_id: this.Trans_id, Trans_date: this.Trans_date, Trans_hour: this.Trans_hour, Trans_amount: this.Trans_amount, Trans_payment_mode: this.Trans_payment_mode, Trans_type: this.Trans_type, Trans_Cust_id: this.Trans_Cust_id, Trans_Acc_no: this.Trans_Acc_no, Trans_code: this.Trans_code
     }).subscribe(data => {
       console.log(data)
@@ -231,14 +231,14 @@ export class AppComponent {
       // this.Acc_last_access = '12/07/2021'
       this.acc_balance = ''
       this.loading = true
-      this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
+      this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
         console.log(data)
         this.loading = false
         this.cust_cur_balance = data.result.acc_balance
         this.Acc_last_access = this.getDate()
         this.acc_balance = parseInt(this.cust_cur_balance) + parseInt(this.Trans_amount) * (this.Trans_type == "Deposit" ? 1 : -1)
         this.loading = true
-        this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
+        this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
           console.log(data)
           this.loading = false
           this.userDeposited=true
@@ -254,7 +254,7 @@ export class AppComponent {
             this.Trans_amount = this.dep_amount
             this.Trans_type = 'Withdrawal'
             this.loading = true
-            this.http.post<any>('http://localhost:3000/acc_transaction/newacc_transaction', {
+            this.http.post<any>('https://cs631-bank-api.herokuapp.com/acc_transaction/newacc_transaction', {
               Trans_id: this.Trans_id, Trans_date: this.Trans_date, Trans_hour: this.Trans_hour, Trans_amount: this.Trans_amount, Trans_payment_mode: this.Trans_payment_mode, Trans_type: this.Trans_type, Trans_Cust_id: this.Trans_Cust_id, Trans_Acc_no: this.Trans_Acc_no, Trans_code: this.Trans_code
             }).subscribe(data => {
               console.log(data)
@@ -264,14 +264,14 @@ export class AppComponent {
               // this.Acc_last_access = '12/07/2021'
               this.acc_balance = ''
               this.loading = true
-              this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
+              this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
                 console.log(data)
                 this.loading = false
                 this.cust_cur_balance = data.result.acc_balance
                 this.Acc_last_access = this.getDate()
                 this.acc_balance = parseInt(this.cust_cur_balance) + parseInt(this.Trans_amount) * (this.Trans_type == "Deposit" ? 1 : -1)
                 this.loading = true
-                this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
+                this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
                   console.log(data)
                   this.loading = false
                 })
@@ -304,7 +304,7 @@ export class AppComponent {
     this.Trans_amount = this.wt_amount
     this.Trans_type = 'Withdrawal'
     this.loading = true
-    this.http.post<any>('http://localhost:3000/acc_transaction/newacc_transaction', {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/acc_transaction/newacc_transaction', {
       Trans_id: this.Trans_id, Trans_date: this.Trans_date, Trans_hour: this.Trans_hour, Trans_amount: this.Trans_amount, Trans_payment_mode: this.Trans_payment_mode, Trans_type: this.Trans_type, Trans_Cust_id: this.Trans_Cust_id, Trans_Acc_no: this.Trans_Acc_no, Trans_code: this.Trans_code
     }).subscribe(data => {
       console.log(data)
@@ -314,14 +314,14 @@ export class AppComponent {
       // this.Acc_last_access = '12/07/2021'
       this.acc_balance = ''
       this.loading = true
-      this.http.post<any>('http://localhost:3000/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
+      this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/findaccount', { Acc_no: this.Acc_no }).subscribe(data => {
         console.log(data)
         this.loading = false
         this.cust_cur_balance = data.result.acc_balance
         this.Acc_last_access = this.getDate()
         this.acc_balance = parseInt(this.cust_cur_balance) + parseInt(this.Trans_amount) * (this.Trans_type == "Deposit" ? 1 : -1)
         this.loading = true
-        this.http.post<any>('http://localhost:3000/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
+        this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
           console.log(data)
           this.loading = false
           this.userWithdraw=true
@@ -333,7 +333,7 @@ export class AppComponent {
 
   check_id() {
     this.loading = true
-    this.http.post<any>('http://localhost:3000/employee/findemployee', { E_id: this.E_id }).subscribe(data => {
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/employee/findemployee', { E_id: this.E_id }).subscribe(data => {
       this.loading = false
       console.log(data.result.Branch_id)
       localStorage.setItem('Branch_id', data.result.Branch_id)
