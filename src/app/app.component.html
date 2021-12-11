@@ -12,9 +12,7 @@
       <mat-expansion-panel hideToggle style="background: antiquewhite">
         <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> Add new Customer </mat-panel-title>
-          <mat-panel-description>
-            Add the following data:
-          </mat-panel-description>
+          
         </mat-expansion-panel-header>
         <tr *ngIf="userCreated" style="height: 30px">
           <td>New Customer created</td>
@@ -107,9 +105,7 @@
       <mat-expansion-panel hideToggle style="background: lavender">
         <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> Modify the Customer data </mat-panel-title>
-          <mat-panel-description>
-            Add the following data:
-          </mat-panel-description>
+          
         </mat-expansion-panel-header>
         <tr *ngIf="userModified" style="height: 30px">
           <td>Customer details updated:</td>
@@ -136,13 +132,12 @@
         <p>
           <button (click)="modifyCustomer()">Submit</button>
         </p>
+        
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle style="background: lightyellow">
         <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> Remove the Customer from bank </mat-panel-title>
-          <mat-panel-description>
-            Add the following data:
-          </mat-panel-description>
+          
         </mat-expansion-panel-header>
         <tr *ngIf="userRemoved" style="height: 30px">
           <td>Customer Removed</td>
@@ -168,6 +163,15 @@
         </tr>
         <p><button (click)="deleteCustomer()">Submit</button></p>
       </mat-expansion-panel>
+      <mat-expansion-panel hideToggle style="background: #e4ffc0">
+        <mat-expansion-panel-header style="height: 40px">
+          <mat-panel-title>Apply Monthly Charges </mat-panel-title>
+          
+        </mat-expansion-panel-header>
+        <p>
+          <button (click)="addServiceCharges()">Submit</button>
+        </p>
+      </mat-expansion-panel>
     </mat-accordion>
   </mat-tab>
   <mat-tab label="Passbook">
@@ -178,9 +182,7 @@
           <mat-panel-title>
             Enter the Customer id then press submit
           </mat-panel-title>
-          <mat-panel-description>
-            Add the following data:
-          </mat-panel-description>
+          
         </mat-expansion-panel-header>
         <p>
           <mat-label label-for="trans_Cust_id"
@@ -227,9 +229,7 @@
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> To Deposit </mat-panel-title>
-          <mat-panel-description>
-            Add the following data:
-          </mat-panel-description>
+          
         </mat-expansion-panel-header>
         <tr *ngIf="userDeposited" style="height: 30px">
           <td>Amount Deposited successfully.</td>
@@ -315,9 +315,7 @@
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header style="height: 40px">
           <mat-panel-title> To Withdraw </mat-panel-title>
-          <mat-panel-description>
-            Add the following data:
-          </mat-panel-description>
+          
         </mat-expansion-panel-header>
         <tr *ngIf="userWithdraw" style="height: 30px">
           <td>Amount  Withdrawal completed.</td>
