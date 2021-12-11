@@ -48,27 +48,23 @@ export class AppComponent {
   Cust_E_id = ''
   userCreated = false
   userModified = false
-  userRemoved = false
-  userDeposited = false
-  userWithdraw = false
+  userRemoved=false
+  userDeposited=false
+  userWithdraw=false
 
   addCustomer() {
-    if (parseInt(this.Trans_amount) < 500) {
-      alert("Minimum amount should be 500$")
-    } else {
-      this.cust_Branch_id = localStorage.getItem('Branch_id')
-      console.log(this.cust_Branch_id)
-      this.Cust_id = this.getRandomInt()
-      this.loading = true
-      this.http.post<any>('https://cs631-bank-api.herokuapp.com/customer/newcustomer', {
-        Cust_id: this.Cust_id,
-        cust_name: this.cust_name, cust_ssn: this.cust_ssn, cust_state: this.cust_state, cust_city: this.cust_city, cust_zip: this.cust_zip, cust_street: this.cust_street, cust_apt: this.cust_apt, Branch_id: this.cust_Branch_id, Cust_E_id: this.E_id
-      }).subscribe(data => {
-        console.log(data)
-        this.loading = false
-        this.addAccount()
-      })
-    }
+    this.cust_Branch_id = localStorage.getItem('Branch_id')
+    console.log(this.cust_Branch_id)
+    this.Cust_id = this.getRandomInt()
+    this.loading = true
+    this.http.post<any>('https://cs631-bank-api.herokuapp.com/customer/newcustomer', {
+      Cust_id: this.Cust_id,
+      cust_name: this.cust_name, cust_ssn: this.cust_ssn, cust_state: this.cust_state, cust_city: this.cust_city, cust_zip: this.cust_zip, cust_street: this.cust_street, cust_apt: this.cust_apt, Branch_id: this.cust_Branch_id, Cust_E_id: this.E_id
+    }).subscribe(data => {
+      console.log(data)
+      this.loading = false
+      this.addAccount()
+    })
   }
 
   // Account
@@ -146,7 +142,7 @@ export class AppComponent {
     this.http.post<any>('https://cs631-bank-api.herokuapp.com/customer/delcustomer', { Cust_id: this.del_Cust_id }).subscribe(data => {
       console.log(data)
       this.loading = false
-      this.userRemoved = true
+      this.userRemoved=true
     })
   }
 
@@ -159,7 +155,7 @@ export class AppComponent {
     this.http.post<any>('https://cs631-bank-api.herokuapp.com/customer/updatecustomer', { Cust_id: this.mod_Cust_id, cust_ssn: this.mod_Cust_ssn }).subscribe(data => {
       console.log(data)
       this.loading = false
-      this.userModified = true
+      this.userModified=true
     })
   }
 
@@ -245,7 +241,7 @@ export class AppComponent {
         this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
           console.log(data)
           this.loading = false
-          this.userDeposited = true
+          this.userDeposited=true
           if (this.dep_Trans_payment_mode != 'cash') {
             // Checque withdrawal
             this.Trans_id = this.getRandomInt()
@@ -328,7 +324,7 @@ export class AppComponent {
         this.http.post<any>('https://cs631-bank-api.herokuapp.com/account/updateaccount', { Acc_no: this.Acc_no, acc_balance: this.acc_balance }).subscribe(data => {
           console.log(data)
           this.loading = false
-          this.userWithdraw = true
+          this.userWithdraw=true
         })
       })
     })
